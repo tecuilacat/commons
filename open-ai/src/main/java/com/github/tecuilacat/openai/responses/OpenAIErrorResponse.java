@@ -1,10 +1,15 @@
 package com.github.tecuilacat.openai.responses;
 
+/**
+ * This response is used when there are errors with the rest call
+ * @author tecuilacat
+ * @since 1.0.2
+ */
 public final class OpenAIErrorResponse extends OpenAIResponse {
 
-    private int errorCode;
+    private final int errorCode;
 
-    private String message;
+    private final String message;
 
     private Exception exception;
 

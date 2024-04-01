@@ -11,9 +11,9 @@ public enum OpenAIErrorCode {
     ERROR_500(500, "Issue on Open AI servers.")
     ;
 
-    private int errorCode;
+    private final int errorCode;
 
-    private String message;
+    private final String message;
 
     OpenAIErrorCode(int errorCode, String message) {
         this.message = message;

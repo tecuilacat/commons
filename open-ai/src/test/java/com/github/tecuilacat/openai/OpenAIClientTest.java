@@ -15,9 +15,14 @@ class OpenAIClientTest {
         assertInstanceOf(OpenAIErrorResponse.class, response);
         OpenAIErrorResponse errorResponse = (OpenAIErrorResponse) response;
         assertEquals(401, errorResponse.getErrorCode());
-        assertEquals("Invalid Authentication", errorResponse.getMessage());
+        assertEquals("Incorrect API key provided: some ran*** key. You can find your API key at https://platform.openai.com/account/api-keys.", errorResponse.getMessage());
         assertNotNull(errorResponse.getException());
         assertInstanceOf(OpenAIException.class, errorResponse.getException());
+    }
+
+    @Test
+    void response_is_successful() {
+        // TODO ? | OS | 01.04.2024 | Implement
     }
 
 }
