@@ -2,7 +2,7 @@
 ![Open-AI](https://img.shields.io/badge/ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
 ![Gradle](https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
 
-![Latest Release](https://img.shields.io/github/v/release/tecuilacat/commons?color=blue&label=latest%20release)
+[![Latest Release](https://jitpack.io/v/tecuilacat/commons.svg)](https://jitpack.io/#tecuilacat/commons)
 ![MIN_SDK Badge](https://img.shields.io/badge/MIN_SDK-Java_17-red)
 
 This module can communicate with ChatGPT just like you would in the Open-AI-Playground.

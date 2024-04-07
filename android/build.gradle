@@ -1,0 +1,14 @@
+group = 'com.github.tecuilacat.android'
+
+dependencies {
+
+    // https://mvnrepository.com/artifact/com.google.android/android
+    implementation 'com.google.android:android:4.1.1.4'
+
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation 'org.json:json:20240303'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+
+}

@@ -1,3 +1,6 @@
 rootProject.name = 'commons'
 include 'document-creator'
 include 'open-ai'
+include 'rfs'
+include 'android'
+
