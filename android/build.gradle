@@ -25,6 +25,10 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
+    // https://mvnrepository.com/artifact/com.github.snowdream.android.util/log
+    implementation 'com.github.snowdream.android.util:log:1.2.0'
+
+
 }
 
 test {

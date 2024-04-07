@@ -1,6 +1,7 @@
 package com.github.tecuilacat.android.filesystem;
 
 import android.content.Context;
+import android.util.Log;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -23,15 +24,19 @@ public class FileUtlis {
             String contentAsJson = mapper.writeValueAsString(obj);
             write(filename, contentAsJson);
         } catch (JsonProcessingException jpe) {
-            jpe.printStackTrace();
+            Log.e(FileUtlis.class.getName(), "Could not map object to json", jpe);
         }
+    }
+
+    public void saveRaw(String filename, String str) {
+        write(filename, str);
     }
 
     private void write(String filename, String json) {
         try (FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE)) {
             fos.write(json.getBytes());
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            Log.e(FileUtlis.class.getName(), "Could not write to file " + filename, ioe);
         }
     }
 
@@ -42,7 +47,7 @@ public class FileUtlis {
             fis.read(buffer); //NOSONAR
             return new String(buffer);
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            Log.e(FileUtlis.class.getName(), "Could not read from file " + filename, ioe);
         }
         return null;
     }
@@ -61,7 +66,7 @@ public class FileUtlis {
         try {
             return mapper.readValue(json, clazz);
         } catch (JsonProcessingException jpe) {
-            jpe.printStackTrace();
+            Log.e(FileUtlis.class.getName(), "Could not read json as type " + clazz.getName(), jpe);
         }
         return null;
     }
