@@ -7,3 +7,17 @@ group = 'com.github.tecuilacat.rfs'
 repositories {
     mavenCentral()
 }
+
+dependencies {
+
+}
+
+test {
+    dependencies {
+
+    }
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+}

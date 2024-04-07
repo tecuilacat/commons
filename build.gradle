@@ -12,37 +12,12 @@ repositories {
     mavenCentral()
 }
 
-allprojects {
-    repositories {
-        mavenCentral()
-    }
-
-
-}
-
-subprojects {
-
-    apply plugin: 'java'
-
+test {
     dependencies {
 
-        // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
-        implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
-
-        implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'
-
-        testImplementation platform('org.junit:junit-bom:5.9.1')
-
-        testImplementation 'org.junit.jupiter:junit-jupiter'
     }
+}
 
-    test {
-        dependencies {
-
-        }
-    }
-
-    tasks.named('test', Test) {
-        useJUnitPlatform()
-    }
+tasks.named('test', Test) {
+    useJUnitPlatform()
 }
