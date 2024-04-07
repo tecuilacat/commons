@@ -1,7 +1,7 @@
 package com.github.tecuilacat.android.storage;
 
 import android.content.Context;
-import com.github.tecuilacat.android.filesystem.FileUtlis;
+import com.github.tecuilacat.android.filesystem.FileUtils;
 
 import java.time.Instant;
 import java.util.Date;
@@ -35,23 +35,23 @@ public class LocalStorageFile {
      * @param obj Object to store in the file
      */
     public void update(Context context, Object obj) {
-        FileUtlis fileUtlis = new FileUtlis(context);
+        FileUtils fileUtils = new FileUtils(context);
         if (obj instanceof String) {
-            fileUtlis.saveRaw(this.fileName, (String) obj);
+            fileUtils.saveRaw(this.fileName, (String) obj);
         } else {
-            fileUtlis.save(this.fileName, obj);
+            fileUtils.save(this.fileName, obj);
         }
         this.setLastUpdated();
     }
 
     public <T> T get(Context context, Class<T> clazz) {
-        FileUtlis fileUtlis = new FileUtlis(context);
-        return fileUtlis.getContent(this.fileName, clazz);
+        FileUtils fileUtils = new FileUtils(context);
+        return fileUtils.getContent(this.fileName, clazz);
     }
 
     public String get(Context context) {
-        FileUtlis fileUtlis = new FileUtlis(context);
-        return fileUtlis.getContent(this.fileName);
+        FileUtils fileUtils = new FileUtils(context);
+        return fileUtils.getContent(this.fileName);
     }
 
 }

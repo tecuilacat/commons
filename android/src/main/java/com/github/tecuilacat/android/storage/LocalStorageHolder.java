@@ -1,7 +1,7 @@
 package com.github.tecuilacat.android.storage;
 
 import android.content.Context;
-import com.github.tecuilacat.android.filesystem.FileUtlis;
+import com.github.tecuilacat.android.filesystem.FileUtils;
 
 import java.io.File;
 import java.time.Instant;
@@ -17,21 +17,21 @@ public class LocalStorageHolder {
     public static LocalStorageFile register(Context context, String filename) {
         List<String> filesInProjectFolder = Arrays.stream(context.fileList()).collect(Collectors.toList());
         Date lastModified = Date.from(Instant.now());
-        boolean folderExists = false;
+        boolean fileExists = false;
 
         for (String fileInProjectFolder: filesInProjectFolder) {
             if (fileInProjectFolder.equalsIgnoreCase(filename)) {
-                folderExists = true;
+                fileExists = true;
                 break;
             }
         }
 
-        if (!folderExists) {
-            new FileUtlis(context).saveRaw(filename, "");
-            LocalStorageFile localStorageFile = new LocalStorageFile(filename, lastModified);
-            registeredStorageFiles.put(filename, localStorageFile);
+        if (!fileExists) {
+            new FileUtils(context).saveRaw(filename, "");
+        } else {
+            lastModified = new Date(new File(filename).lastModified());
         }
-        return registeredStorageFiles.get(filename);
+        return registeredStorageFiles.put(filename.toLowerCase(), new LocalStorageFile(filename, lastModified));
     }
 
     public static void removeStorageFile(LocalStorageFile localStorageFile) {

@@ -9,11 +9,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class FileUtlis {
+public class FileUtils {
 
     private final Context context;
 
-    public FileUtlis(Context context) {
+    public FileUtils(Context context) {
         this.context = context;
     }
 
@@ -24,7 +24,7 @@ public class FileUtlis {
             String contentAsJson = mapper.writeValueAsString(obj);
             write(filename, contentAsJson);
         } catch (JsonProcessingException jpe) {
-            Log.e(FileUtlis.class.getName(), "Could not map object to json", jpe);
+            Log.e(FileUtils.class.getName(), "Could not map object to json", jpe);
         }
     }
 
@@ -36,7 +36,7 @@ public class FileUtlis {
         try (FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE)) {
             fos.write(json.getBytes());
         } catch (IOException ioe) {
-            Log.e(FileUtlis.class.getName(), "Could not write to file " + filename, ioe);
+            Log.e(FileUtils.class.getName(), "Could not write to file " + filename, ioe);
         }
     }
 
@@ -47,7 +47,7 @@ public class FileUtlis {
             fis.read(buffer); //NOSONAR
             return new String(buffer);
         } catch (IOException ioe) {
-            Log.e(FileUtlis.class.getName(), "Could not read from file " + filename, ioe);
+            Log.e(FileUtils.class.getName(), "Could not read from file " + filename, ioe);
         }
         return null;
     }
@@ -66,7 +66,7 @@ public class FileUtlis {
         try {
             return mapper.readValue(json, clazz);
         } catch (JsonProcessingException jpe) {
-            Log.e(FileUtlis.class.getName(), "Could not read json as type " + clazz.getName(), jpe);
+            Log.e(FileUtils.class.getName(), "Could not read json as type " + clazz.getName(), jpe);
         }
         return null;
     }
