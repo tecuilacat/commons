@@ -3,16 +3,12 @@ package com.github.tecuilacat.android.filesystem;
 import android.content.Context;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class FileUtlis {
-
-    private final Logger LOGGER = LogManager.getLogger(FileUtlis.class);
 
     private final Context context;
 
@@ -21,13 +17,13 @@ public class FileUtlis {
     }
 
     public void save(String filename, Object obj) {
-        LOGGER.debug("Attempting to convert object ({}) to JSON and saving it to file ({})", obj, filename);
+
         ObjectMapper mapper = new ObjectMapper();
         try {
             String contentAsJson = mapper.writeValueAsString(obj);
             write(filename, contentAsJson);
         } catch (JsonProcessingException jpe) {
-            LOGGER.error("Could not parse object to JSON", jpe);
+            jpe.printStackTrace();
         }
     }
 
@@ -35,7 +31,7 @@ public class FileUtlis {
         try (FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE)) {
             fos.write(json.getBytes());
         } catch (IOException ioe) {
-            LOGGER.error("Could not open OutputStream", ioe);
+            ioe.printStackTrace();
         }
     }
 
@@ -46,7 +42,7 @@ public class FileUtlis {
             fis.read(buffer); //NOSONAR
             return new String(buffer);
         } catch (IOException ioe) {
-            LOGGER.error("Could not open InputStream", ioe);
+            ioe.printStackTrace();
         }
         return null;
     }
@@ -65,7 +61,7 @@ public class FileUtlis {
         try {
             return mapper.readValue(json, clazz);
         } catch (JsonProcessingException jpe) {
-            LOGGER.error("Could not parse JSON to object", jpe);
+            jpe.printStackTrace();
         }
         return null;
     }
