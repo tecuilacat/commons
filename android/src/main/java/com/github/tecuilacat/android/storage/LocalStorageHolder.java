@@ -31,7 +31,8 @@ public class LocalStorageHolder {
         } else {
             lastModified = new Date(new File(filename).lastModified());
         }
-        return registeredStorageFiles.put(filename.toLowerCase(), new LocalStorageFile(filename, lastModified));
+        registeredStorageFiles.put(filename.toLowerCase(), new LocalStorageFile(filename, lastModified));
+        return registeredStorageFiles.get(filename.toLowerCase());
     }
 
     public static void removeStorageFile(LocalStorageFile localStorageFile) {
