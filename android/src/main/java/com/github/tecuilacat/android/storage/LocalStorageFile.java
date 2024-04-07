@@ -36,8 +36,8 @@ public class LocalStorageFile {
      */
     public void update(Context context, Object obj) {
         FileUtlis fileUtlis = new FileUtlis(context);
-        if (obj instanceof String str) {
-            fileUtlis.saveRaw(this.fileName, str);
+        if (obj instanceof String) {
+            fileUtlis.saveRaw(this.fileName, (String) obj);
         } else {
             fileUtlis.save(this.fileName, obj);
         }

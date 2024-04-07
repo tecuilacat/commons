@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LocalStorageHolder {
 
@@ -43,9 +44,7 @@ public class LocalStorageHolder {
     }
 
     public static List<String> getStorageFileNames() {
-        return registeredStorageFiles.keySet()
-                .stream()
-                .toList();
+        return new ArrayList<>(registeredStorageFiles.keySet());
     }
 
     public static Optional<LocalStorageFile> get(String filename) {
