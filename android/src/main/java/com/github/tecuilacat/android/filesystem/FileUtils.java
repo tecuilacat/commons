@@ -9,6 +9,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * This class manages the communication to the internal file system of the app. All files edited by this class are going to be in /your-app/files/...
+ * @implNote Usage of this class in raw is not recommended for larger implementation. Rather use com.github.tecuilacat.android.storage.LocalStorageHolder
+ * @see com.github.tecuilacat.android.storage.LocalStorageHolder
+ * @since v1.1
+ * @author tecuilacat
+ */
 public class FileUtils {
 
     private final Context context;

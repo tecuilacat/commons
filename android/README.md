@@ -19,3 +19,22 @@ dependencies {
     implementation 'com.github.tecuilacat.commons:android:[latest-release]'
 }
 ```
+
+## To make it work
+At first this API will probably cause errors. How to prevent them:  
+
+`build.gradle (Module: app)`
+```groovy
+packagingOptions {
+    exclude 'AndroidManifest.xml'
+    exclude 'res/animator/*'
+    exclude 'res/drawable/*'
+    exclude 'res/layout/*'
+    exclude 'resources.arsc'
+}
+```
+
+## Documentations
+| Name               | Link                                                                                                                                                       |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| LocalStorageHolder | Documentation can be found [here](https://github.com/tecuilacat/commons/tree/master/android/src/main/java/com/github/tecuilacat/android/storage/README.md) |
