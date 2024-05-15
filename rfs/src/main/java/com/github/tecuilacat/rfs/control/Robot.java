@@ -34,8 +34,13 @@ public final class Robot implements RobotOperations {
 
     private final boolean isMinZvalueValidated;
 
+    /**
+     * Constructs a new Robot instance based on the provided RobotBuilder.
+     *
+     * @param builder the RobotBuilder instance containing configuration parameters for the robot
+     */
     Robot(RobotBuilder builder) {
-        if (!builder.name.equals("")) {
+        if (!builder.name.isEmpty()) {
             this.name = builder.name;
         }
         this.minZvalue = builder.minZvalue;

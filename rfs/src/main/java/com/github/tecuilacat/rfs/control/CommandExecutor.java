@@ -10,7 +10,11 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Sends and executes commands
+ * Executes commands on a robot through a socket connection.
+ * <p>
+ * This class provides methods to send commands to a robot and receive its responses
+ * over a socket connection. It handles commands that do not involve moving the robot.
+ * </p>
  */
 public final class CommandExecutor {
 
@@ -24,15 +28,23 @@ public final class CommandExecutor {
         this.writer = writer;
     }
 
+    /**
+     * Creates a new CommandExecutor instance using the provided socket's input and output streams.
+     *
+     * @param socket the socket connected to the robot
+     * @return a CommandExecutor instance
+     * @throws IOException if an I/O error occurs while accessing the socket streams
+     */
     public static CommandExecutor getFromSocket(Socket socket) throws IOException {
         return new CommandExecutor(socket.getInputStream(), socket.getOutputStream());
     }
 
     /**
-     * Used for all commands except for those that move the robot
+     * Executes a command on the robot and retrieves its response.
      *
-     * @param command Command the robot has to execute
-     * @return Answer of the robot
+     * @param command the command to be executed on the robot
+     * @return the response from the robot
+     * @since v1.0
      */
     public String execute(String command) {
         logger.command("Executing command: " + command);

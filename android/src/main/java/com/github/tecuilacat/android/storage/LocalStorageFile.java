@@ -7,8 +7,11 @@ import java.time.Instant;
 import java.util.Date;
 
 /**
- * An object of this class is assigned to a file in the filesystem <br>
- * Via this class the file can be read or updated / overwritten
+ * Represents a file in local storage.
+ * <p>
+ * This class provides methods to interact with a file in local storage,
+ * including updating its content, retrieving data from it, and accessing metadata.
+ * </p>
  * @since v1.1
  * @author tecuilacat
  */
@@ -18,28 +21,52 @@ public class LocalStorageFile {
 
     private Date lastUpdated;
 
+    /**
+     * Constructs a new LocalStorageFile object with the specified filename and last updated date.
+     *
+     * @param fileName the name of the file
+     * @param lastUpdated the date when the file was last updated
+     */
     public LocalStorageFile(String fileName, Date lastUpdated) {
         this.fileName = fileName;
         this.lastUpdated = lastUpdated;
     }
 
+    /**
+     * Retrieves the date when the file was last updated.
+     *
+     * @return the date when the file was last updated
+     */
     public Date getLastUpdated() {
         return lastUpdated;
     }
 
+    /**
+     * Retrieves the filename of the file.
+     *
+     * @return the filename of the file
+     */
     public String getFileName() {
         return fileName;
     }
 
+    /**
+     * Sets the last updated timestamp to the current date and time.
+     */
     public void setLastUpdated() {
         this.lastUpdated = Date.from(Instant.now());
     }
 
     /**
-     * Stores data to the assigned file. If it is a String, it gets directly written to the file, if it is not a string it first gets parsed to a JSON-object
-     * @implNote File gets overwritten entirely - not appended
-     * @param context Android context
-     * @param obj Object to store in the file
+     * Updates the content of the file associated with this instance using the provided object.
+     * <p>
+     * This method checks the type of the provided object. If the object is a {@code String},
+     * it saves the raw string content to the file. Otherwise, it serializes the object
+     * and saves it to the file. After updating the file, the method sets the last updated timestamp.
+     * </p>
+     *
+     * @param context the application context used to access the file system
+     * @param obj the object to be saved to the file; can be either a {@code String} or any other serializable object
      * @since v1.1
      */
     public void update(Context context, Object obj) {

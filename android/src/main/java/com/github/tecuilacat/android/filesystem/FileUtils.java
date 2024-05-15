@@ -10,7 +10,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * This class manages the communication to the internal file system of the app. All files edited by this class are going to be in /your-app/files/...
+ * Utility class for managing local storage files.
+ * <p>
+ * This class provides methods for registering, removing, and retrieving local storage files,
+ * as well as accessing information about registered storage files.
+ * </p>
  * @implNote Usage of this class in raw is not recommended for larger implementation. Rather use com.github.tecuilacat.android.storage.LocalStorageHolder
  * @see com.github.tecuilacat.android.storage.LocalStorageHolder
  * @since v1.1
@@ -24,6 +28,17 @@ public class FileUtils {
         this.context = context;
     }
 
+    /**
+     * Serializes an object to JSON and saves it to a file with the specified filename.
+     * <p>
+     * This method uses an {@code ObjectMapper} to convert the provided object into a JSON string.
+     * It then writes the JSON string to the specified file. If a {@code JsonProcessingException}
+     * occurs during serialization, an error message is logged.
+     * </p>
+     *
+     * @param filename the name of the file to save the JSON content to
+     * @param obj the object to be serialized and saved
+     */
     public void save(String filename, Object obj) {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -39,6 +54,16 @@ public class FileUtils {
         write(filename, str);
     }
 
+    /**
+     * Writes a JSON string to a file with the specified filename.
+     * <p>
+     * This method opens a file output stream in private mode and writes the provided JSON string to the file.
+     * If an I/O error occurs during the write operation, an error message is logged.
+     * </p>
+     *
+     * @param filename the name of the file to write to
+     * @param json the JSON string to be written to the file
+     */
     private void write(String filename, String json) {
         try (FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE)) {
             fos.write(json.getBytes());
@@ -47,6 +72,17 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Reads the content of a file with the specified filename and returns it as a string.
+     * <p>
+     * This method opens a file input stream, reads the content of the file into a byte array,
+     * and converts it to a string. If an I/O error occurs during the read operation, an error
+     * message is logged, and the method returns {@code null}.
+     * </p>
+     *
+     * @param filename the name of the file to read from
+     * @return the content of the file as a string, or {@code null} if an error occurs
+     */
     private String read(String filename) {
         try (FileInputStream fis = context.openFileInput(filename)) {
             int size = fis.available();
@@ -63,11 +99,36 @@ public class FileUtils {
         return read(filename);
     }
 
+    /**
+     * Reads the content of a file and converts it to an object of the specified type.
+     * <p>
+     * This method reads the content of the file with the given filename as a JSON string
+     * and then deserializes it into an object of the specified class type using the {@code getJsonAsObject} method.
+     * If an error occurs during either the file read or JSON deserialization process, the method returns {@code null}.
+     * </p>
+     *
+     * @param <T> the type of the object to be returned
+     * @param filename the name of the file to read from
+     * @param clazz the class of the type into which the file content should be deserialized
+     * @return the deserialized object of type {@code T}, or {@code null} if an error occurs
+     */
     public <T> T getContent(String filename, Class<T> clazz) {
         String json = read(filename);
         return getJsonAsObject(json, clazz);
     }
 
+    /**
+     * Converts a JSON string to an object of the specified type.
+     * <p>
+     * This method uses an {@code ObjectMapper} to deserialize the provided JSON string into an object of the given class type.
+     * If a {@code JsonProcessingException} occurs during deserialization, an error message is logged, and the method returns {@code null}.
+     * </p>
+     *
+     * @param <T> the type of the object to be returned
+     * @param json the JSON string to be deserialized
+     * @param clazz the class of the type into which the JSON string should be deserialized
+     * @return the deserialized object of type {@code T}, or {@code null} if an error occurs
+     */
     public  <T> T getJsonAsObject(String json, Class<T> clazz) {
         ObjectMapper mapper = new ObjectMapper();
         try {

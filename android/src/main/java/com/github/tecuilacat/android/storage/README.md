@@ -3,7 +3,7 @@ This part of the module is used to store data to files in the local filesystem. 
 
 In the following example we are implementing a startup-configuration and want to control whether a pin on startup of the app is desired
 
-`Filenames.java`
+`LocalStorageFileNames.java`
 ```java
 /**
  * Class is used to store filenames thus keys

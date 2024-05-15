@@ -9,11 +9,18 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * This class holds all files in which saved data is stored. From this handler files can be retrieved and data can be read or stored
+ * Utility class for managing local storage files.
+ * <p>
+ * This class provides methods for registering, removing, and retrieving local storage files,
+ * as well as accessing information about registered storage files.
+ * </p>
+ * <p>
+ *     Documentation can be found <a href="https://github.com/tecuilacat/commons/blob/master/android/src/main/java/com/github/tecuilacat/android/storage/README.md">here</a>.
+ * </p>
  * @implNote For better usability and to prevent errors, use an extra class solely for filenames / keys
- * @since v1.1
  * @see LocalStorageFile
  * @author tecuilacat
+ * @since v1.1
  */
 public class LocalStorageHolder {
 
@@ -22,12 +29,17 @@ public class LocalStorageHolder {
     private LocalStorageHolder() { }
 
     /**
-     * Registers a file to the static holder and stores it in a static context
-     * @implNote Any file you register will be in any other class anywhere in your application during runtime since it is held in a static context<br>
-     *           Read documentation <a href="https://github.com/tecuilacat/commons/tree/master/android/src/main/java/com/github/tecuilacat/android/storage/README.md">here</a>
-     * @param context Android context
-     * @param filename Actual filename you want to use in the local storage
-     * @return The either newly created or the already stored LocalStorageFile-object in the holder
+     * Registers a local storage file with the given filename in the application context.
+     * <p>
+     * This method checks if the file already exists in the application's project folder.
+     * If the file does not exist, it creates a new empty file with the given filename.
+     * If the file exists, it retrieves the last modified date of the file.
+     * The file is then registered in a static map with the filename as the key and a {@code LocalStorageFile} object as the value.
+     * </p>
+     *
+     * @param context the application context used to access the file system
+     * @param filename the name of the file to be registered
+     * @return the registered {@code LocalStorageFile} object
      * @since v1.1
      */
     public static LocalStorageFile register(Context context, String filename) {
@@ -52,7 +64,14 @@ public class LocalStorageHolder {
     }
 
     /**
-     * @param localStorageFile Removes the object from the LocalStorageHolder if present
+     * Removes a {@code LocalStorageFile} from the registered storage files.
+     * <p>
+     * This method checks if the specified {@code LocalStorageFile} exists in the registered storage files map
+     * either by its filename or by its reference. If found, the file is removed from the map.
+     * </p>
+     *
+     * @param localStorageFile the {@code LocalStorageFile} object to be removed
+     * @since v1.1
      */
     public static void removeStorageFile(LocalStorageFile localStorageFile) {
         if (registeredStorageFiles.containsKey(localStorageFile.getFileName()) || registeredStorageFiles.containsValue(localStorageFile)) {
@@ -61,22 +80,44 @@ public class LocalStorageHolder {
     }
 
     /**
-     * @param filename Actual name of the file in the filesystem (or key in the map)
+     * Removes a registered storage file with the specified filename.
+     * <p>
+     * This method removes the registered storage file from the map using the specified filename
+     * in a case-insensitive manner.
+     * </p>
+     *
+     * @param filename the filename of the storage file to be removed
+     * @since v1.1
      */
     public static void removeStorageFile(String filename) {
         registeredStorageFiles.remove(filename.toLowerCase());
     }
 
     /**
-     * @return All filenames managed by the LocalStorageHolder in lower case
+     * Retrieves a list of filenames of all registered storage files.
+     * <p>
+     * This method returns a list containing the filenames of all registered storage files.
+     * </p>
+     *
+     * @return a list of filenames of all registered storage files
+     * @since 1.1
      */
     public static List<String> getStorageFileNames() {
         return new ArrayList<>(registeredStorageFiles.keySet());
     }
 
     /**
-     * @param filename Actual filename (or key in the map)
-     * @return LocalStorageFile if held by the LocalStorageHolder, empty if not
+     * Retrieves a registered {@code LocalStorageFile} object by its filename.
+     * <p>
+     * This method searches for a {@code LocalStorageFile} object with the specified filename
+     * in the registered storage files map. If found, it returns an {@code Optional} containing
+     * the {@code LocalStorageFile} object; otherwise, it returns an empty {@code Optional}.
+     * </p>
+     *
+     * @param filename the filename of the {@code LocalStorageFile} to retrieve
+     * @return an {@code Optional} containing the {@code LocalStorageFile} object if found,
+     *         or an empty {@code Optional} otherwise
+     * @since v1.1
      */
     public static Optional<LocalStorageFile> get(String filename) {
         return registeredStorageFiles.values()

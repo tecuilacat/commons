@@ -4,7 +4,7 @@
 ![Gradle](https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
 
 [![Latest Release](https://jitpack.io/v/tecuilacat/commons.svg)](https://jitpack.io/#tecuilacat/commons)
-![MIN_SDK Badge](https://img.shields.io/badge/MIN_SDK-Java_17-red)
+![MIN_SDK Badge](https://img.shields.io/badge/MIN_SDK-Java_11-red)
 
 This module contains any utilities surrounding the android world
 
@@ -32,9 +32,16 @@ packagingOptions {
     exclude 'res/layout/*'
     exclude 'resources.arsc'
 }
+
+//also add this to the dependencies
+// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
 ```
 
 ## Documentations
 | Name               | Link                                                                                                                                                       |
 |--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | LocalStorageHolder | Documentation can be found [here](https://github.com/tecuilacat/commons/tree/master/android/src/main/java/com/github/tecuilacat/android/storage/README.md) |
+
+---
+&copy; tecuilacat 2024
