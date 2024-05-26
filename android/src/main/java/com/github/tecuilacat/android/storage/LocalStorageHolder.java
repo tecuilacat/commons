@@ -14,9 +14,10 @@ import java.util.stream.Collectors;
  * This class provides methods for registering, removing, and retrieving local storage files,
  * as well as accessing information about registered storage files.
  * </p>
- * <p>
- *     Documentation can be found <a href="https://github.com/tecuilacat/commons/blob/master/android/src/main/java/com/github/tecuilacat/android/storage/README.md">here</a>.
- * </p>
+ * <ul>
+ *         <li>Class documentation can be found <a href="https://github.com/tecuilacat/commons/blob/master/android/src/main/java/com/github/tecuilacat/android/storage/README.md">here</a></li>
+ *         <li>API documentation can be found <a href="https://github.com/tecuilacat/commons/blob/master/android/README.md">here</a></li>
+ * </ul>
  * @implNote For better usability and to prevent errors, use an extra class solely for filenames / keys
  * @see LocalStorageFile
  * @author tecuilacat

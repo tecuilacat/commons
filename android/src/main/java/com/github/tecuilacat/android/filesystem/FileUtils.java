@@ -15,6 +15,9 @@ import java.io.IOException;
  * This class provides methods for registering, removing, and retrieving local storage files,
  * as well as accessing information about registered storage files.
  * </p>
+ * <ul>
+ *      <li>API documentation can be found <a href="https://github.com/tecuilacat/commons/blob/master/android/README.md">here</a></li>
+ * </ul>
  * @implNote Usage of this class in raw is not recommended for larger implementation. Rather use com.github.tecuilacat.android.storage.LocalStorageHolder
  * @see com.github.tecuilacat.android.storage.LocalStorageHolder
  * @since v1.1

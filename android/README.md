@@ -4,7 +4,7 @@
 ![Gradle](https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
 
 [![Latest Release](https://jitpack.io/v/tecuilacat/commons.svg)](https://jitpack.io/#tecuilacat/commons)
-![MIN_SDK Badge](https://img.shields.io/badge/MIN_SDK-Java_11-red)
+![MIN_SDK Badge](https://img.shields.io/badge/MIN_SDK-Java_17-red)
 
 This module contains any utilities surrounding the android world
 

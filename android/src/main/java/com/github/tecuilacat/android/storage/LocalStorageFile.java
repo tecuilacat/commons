@@ -12,6 +12,9 @@ import java.util.Date;
  * This class provides methods to interact with a file in local storage,
  * including updating its content, retrieving data from it, and accessing metadata.
  * </p>
+ * <ul>
+ *      <li>API documentation can be found <a href="https://github.com/tecuilacat/commons/blob/master/android/README.md">here</a></li>
+ * </ul>
  * @since v1.1
  * @author tecuilacat
  */
