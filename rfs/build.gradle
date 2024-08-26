@@ -8,9 +8,30 @@ repositories {
     mavenCentral()
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+javadoc {
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
 dependencies {
 
 }
+
+
+
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+//
+//artifacts {
+//    archives sourcesJar
+//    archives javadocJar
+//}
 
 test {
     dependencies {

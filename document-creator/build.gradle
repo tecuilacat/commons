@@ -5,7 +5,12 @@ plugins {
 group = 'com.github.tecuilacat.dc'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+    withJavadocJar()
+}
+
+javadoc {
+    options.addStringOption('Xdoclint:none', '-quiet')
 }
 
 repositories {

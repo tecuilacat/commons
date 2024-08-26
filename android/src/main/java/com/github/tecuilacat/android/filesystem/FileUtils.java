@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -45,6 +46,7 @@ public class FileUtils {
     public void save(String filename, Object obj) {
 
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
         try {
             String contentAsJson = mapper.writeValueAsString(obj);
             write(filename, contentAsJson);
@@ -134,6 +136,7 @@ public class FileUtils {
      */
     public  <T> T getJsonAsObject(String json, Class<T> clazz) {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
         try {
             return mapper.readValue(json, clazz);
         } catch (JsonProcessingException jpe) {

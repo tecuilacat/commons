@@ -116,7 +116,7 @@ public final class RobotBuilder {
     }
 
     /**
-     * Sets the speed of the robot (0 < speed <= 100)
+     * Sets the speed of the robot (0 &lt; speed &lt;= 100)
      * @param speed Moving speed of the robot
      * @return Instance of RobotBuilder
      */

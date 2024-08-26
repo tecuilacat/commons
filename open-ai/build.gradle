@@ -8,6 +8,15 @@ repositories {
     mavenCentral()
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+javadoc {
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
 dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 
