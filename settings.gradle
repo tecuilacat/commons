@@ -13,3 +13,5 @@ include 'document-creator'
 include 'open-ai'
 include 'rfs'
 include 'android'
+include 'api'
+
